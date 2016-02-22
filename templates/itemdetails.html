@@ -1,0 +1,45 @@
+{% extends "main.html" %}
+{% block content %}
+	<div class="row top-menu main-header">
+		<div class="col-md-10">Catalog App</div>
+		<div class="col-md-2 text-right">
+			<a href="{{url_for('disconnect')}}">Logout</a>
+		</div>
+	</div>
+
+	<div class = 'flash'>
+		{% with messages = get_flashed_messages() %}
+			{% if messages %}
+        	<ul>
+        		{% for message in messages %}
+            		<li> <strong> {{ message }} </strong> </li>
+        		{% endfor %}
+        	</ul>
+        	{% endif %}
+    	{% endwith %}
+	</div>
+
+	<div style="padding-bottom: 20px"></div>
+
+    <div class="row">
+        <h2>{{item.name}}</h2>
+    </div>
+    <div class="row">
+        {{item.description}}
+    </div>
+	{% if creator=='True' %}
+	<div class="row">
+	<div class="col-md-3">
+	<div class="row" style="padding-top: 10px">
+		<div class="col-md-2" style="padding-left: 0px">
+            <a href="{{url_for('editItem', category_id=category_id, category_name=category_name, item_name=item.name)}}">Edit</a>
+        </div>
+        <div class="col-md-2" style="padding-left: 0px">
+            <a href="{{url_for('deleteItem', category_id=category_id, category_name=category_name, item_name=item.name)}}">Delete</a>
+        </div>
+	</div>
+    </div>
+    <div class="col-md-9"></div>
+    </div>
+	{% endif %}
+{% endblock %}

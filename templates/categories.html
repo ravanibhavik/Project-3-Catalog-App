@@ -1,0 +1,60 @@
+{% extends "main.html" %}
+{% block content %}
+	<div class="row top-menu main-header">
+		<div class="col-md-10">Catalog App</div>
+		<div class="col-md-2 text-right">
+			<a href="{{url_for('disconnect')}}">Logout</a>
+		</div>
+	</div>
+	<div class = 'flash'>
+	{% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <ul>
+        {% for message in messages %}
+            <li> <strong> {{ message }} </strong> </li>
+        {% endfor %}
+        </ul>
+        {% endif %}
+    {% endwith %}
+	</div>
+
+	<div class="row">
+	<div class="col-md-3">
+	<div class="col-md-10 item-header">Categories</div>
+	{% for category in categories %}
+		<a href="{{url_for('showItems', category_id=category.id, category_name=category.name)}}">
+				<div class="col-md-1"></div>
+				<div class="col-md-10 catalog-list" style="clear: both">
+					<h3>{{category.name}}</h3>
+				</div>
+				<div class="col-md-1"></div>
+		</a>
+	{% endfor %}
+	</div>
+	<div class="col-md-9">
+		<div class="row" style="padding-left: 10px">
+			<a href="{{url_for('newItem')}}">
+				Add Item
+			</a>
+		</div>
+
+		<div class="row">
+			<div class="col-md-12 item-header">Latest Items</div>
+		</div>
+
+		{% if items !=[] %}
+		<div class="row">
+			{% for i in items %}
+			<a href="{{url_for('displayItem', category_id=i.category.id, category_name=i.category.name, item_name=i.name)}}">
+			<div class="col-md-1"></div>
+				<div class="col-md-10 catalog-list" style="clear: both">
+					<h3>{{i.name}} ({{i.category.name}})</h3>
+				</div>
+			<div class="col-md-1"></div>
+			{% endfor %}
+			</a>
+		</div>
+		{% endif %}
+	</div>
+	</div>
+{% endblock %}

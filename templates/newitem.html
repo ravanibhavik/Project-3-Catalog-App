@@ -1,0 +1,31 @@
+{% extends "main.html" %}
+{% block content %}
+	<div class="row top-menu main-header">
+		<div class="col-md-10">Catalog App</div>
+		<div class="col-md-2 text-right">
+			<a href="{{url_for('disconnect')}}">Logout</a>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-6">
+			<form action="#" method = "post">
+				<div class="form-group">
+					<label for="name">Name:</label>
+					<input type ="text" maxlength="50" class="form-control" name="name" placeholder="Name of the catalog item" required>
+					<label for="description">Description:</label>
+					<textarea class="form-control" maxlength="250" rows="3" name="description" placeholder="Description of the item"></textarea>
+					<label for="category">Category:</label>
+					<select class="form-control" name="category" required>
+						{% for category in categories %}
+							<option value="{{category.id}}">{{category.name}}</option>
+						{% endfor %}
+					</select>
+					<button type="submit" id="submit">
+						Submit
+					</button>
+				</div>
+			</form>
+		</div>
+	</div>
+{% endblock %}
+
