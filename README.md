@@ -1,4 +1,6 @@
 1) Clone the project using following command:
+   
+   git clone https://github.com/ravanibhavik/Project-3-Catalog-App.git
 
 2) Navigate to the project folder
    
